@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+//Revision History
+//Mahan Poor Hamidian   2024/12/13  Movemnt of Turret on Z axis ONLY / Mouse Rotation Based on the mouse Delta  TO DO: Rail Boumdaris and clamping + dotproduct when the direction is changed
 public class TurretController : MonoBehaviour
 {
     //Inspector variables
@@ -20,6 +21,11 @@ public class TurretController : MonoBehaviour
     [SerializeField] private float turretRotationSpeed; // the rotation speed of the pivot head of turret {for movement based on the position of mouse}
     [Space] [SerializeField] private float turretRotationSensitivity = 0.1f;
     [SerializeField] private float turretPitchLimit = 45f;
+    [Space] [Header("Turret Rail Settings")]
+    [SerializeField] private float railMinZ;
+    [SerializeField] private float railMaxZ;
+    [SerializeField] private float railMinX;
+    [SerializeField] private float railMaxX;
     //private variables
     private Vector2 _moveValue; // a variable to store the input
     private Vector2 _mousePosition2D; // mouse position
@@ -104,14 +110,7 @@ public class TurretController : MonoBehaviour
     #region Turret Movement
 
    //Turret Movement on Z axis
-   private void MoveTurretHead(Vector3 targetPosition)
-   {
-       Vector3 direction = (targetPosition - turretHead.transform.position).normalized;
-        
-       Quaternion lookRotation = Quaternion.LookRotation(direction);
-        
-       turretHead.transform.rotation = Quaternion.Slerp(turretHead.transform.rotation, lookRotation, turretRotationSpeed * Time.deltaTime);
-   }
+
    private void OnMovePerformed(InputAction.CallbackContext ctx)
    {
        _moveValue = ctx.ReadValue<Vector2>(); // set the moveValue to the amount of the input
@@ -124,9 +123,21 @@ public class TurretController : MonoBehaviour
    {
        if (turret && _moveValue != Vector2.zero)
        {
-           Vector3 movement = new Vector3(_moveValue.x, 0, _moveValue.y) * (Time.deltaTime * turretSpeed); // Translating 2D to 3D
-            
+           Vector3 cameraForward = turretCamera.transform.forward; //set the forward of the camera on z axis
+           
+           float dotProduct = Vector3.Dot(cameraForward, Vector3.forward); // gets the dot product between -1 an 1
+           
+           Vector3 movementDirection = (dotProduct >= 0f) ? Vector3.forward : Vector3.back; // if bigger than 0 then it means closer to forward so forward
+           //else it will be closer to back so direction will be bacl
+           
+           Vector3 movement = movementDirection * (_moveValue.y * (Time.deltaTime * turretSpeed)); // Translating 2D to 3D
+           
            turret.transform.position += movement; //Moving the turret based on the Vector
+           /*
+           Vector3 pos = turret.transform.position;
+           pos.z = Mathf.Clamp(pos.z, railMinX, railMaxX); // Clamping
+           turret.transform.position = pos;
+           */
        }
    }
    private void DisableMovementInput()
@@ -147,6 +158,14 @@ public class TurretController : MonoBehaviour
    
     #region Turret Aiming On Position
     //Mouse Movement Based on the mouse Position. Not in use
+    private void MoveTurretHead(Vector3 targetPosition)
+    {
+        Vector3 direction = (targetPosition - turretHead.transform.position).normalized;
+        
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        
+        turretHead.transform.rotation = Quaternion.Slerp(turretHead.transform.rotation, lookRotation, turretRotationSpeed * Time.deltaTime);
+    }
     private void TurretHeadRaycast()
     {
         Ray ray = turretCamera.ScreenPointToRay(new Vector3(_mousePosition2D.x, _mousePosition2D.y, 0 ));

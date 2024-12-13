@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="eff9293f-827f-41fe-89db-85a5cdd0a04c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RetailTurretShooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RetailTurretShooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Turret/TurretController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Turret/TurretController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +91,7 @@
       <option name="presentableId" value="Default" />
       <updated>1734016297815</updated>
       <workItem from="1734016299247" duration="4000" />
-      <workItem from="1734114128454" duration="11529000" />
+      <workItem from="1734114128454" duration="13898000" />
     </task>
     <servers />
   </component>
