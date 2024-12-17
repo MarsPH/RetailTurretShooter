@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //Revision History
@@ -26,13 +27,21 @@ public class TurretController : MonoBehaviour
     [SerializeField] private float railMaxZ;
     [SerializeField] private float railMinX;
     [SerializeField] private float railMaxX;
+
+    [Space] [Header("Turret Gun Settings")] 
+    [SerializeField] private Transform ShootingPosition;
+    [SerializeField] private float shootCooldown = 2f;
+    [SerializeField] private float shootRange = 50f;
+    [SerializeField] private LayerMask shootableLayers;
+    
     //private variables
     private Vector2 _moveValue; // a variable to store the input
     private Vector2 _mousePosition2D; // mouse position
     private Vector2 _mouseDelta; // mouse delta for moving the aim
-
+    private bool _isIntersecting = false;
     private float _currentPitch = 0f;
-    
+    private float timeSinceLastShot = 0; // for shooting
+
     
     
     
@@ -49,6 +58,7 @@ public class TurretController : MonoBehaviour
         EnableMouseDeltaInput();
         EnableMovementInput();
         EnableMouseInput();
+        EnableShootingInput();
     }
 
     private void OnDisable()
@@ -56,15 +66,58 @@ public class TurretController : MonoBehaviour
         DisableMovementInput();
         DisableMovementInput();
         DisableMouseInput();
+        DisableMouseInput();
         _inputActions.Gameplay.Disable();
     }
 
     private void Update()
     {
+        timeSinceLastShot += Time.deltaTime; // incermenting the var to keep track of the time
+
         MoveTurret(); // move the turret on the rail
         //TurretHeadRaycast(); this is based on the mouse Position
         RotateTurretOnDelta(); //moves turred based on the mouse delta
     }
+    #region Turret Shooting
+
+    void EnableShootingInput()
+    {
+        _inputActions.Gameplay.Shoot.performed += OnShoot;
+    }
+
+    void DisableShootingInput()
+    {
+        _inputActions.Gameplay.Shoot.performed -= OnShoot;
+    }
+    
+    private void OnShoot(InputAction.CallbackContext ctx)
+    {
+        Shoot(); //it will check for cooldown then shoots
+    }
+    
+    private void Shoot()
+    {
+        if (timeSinceLastShot >= shootCooldown) // if time has passed more than the cooldown
+        {
+            timeSinceLastShot = 0; // reset the time
+            var turretBarrelDirection = ShootingPosition.transform.TransformDirection(Vector3.up);
+            RaycastHit hitInfo;
+            if (Physics.Raycast(turretBarrel.transform.position,turretBarrelDirection , out hitInfo, shootRange,
+                    shootableLayers))
+            {
+                Debug.DrawRay(turretBarrel.transform.position, turretBarrelDirection * hitInfo.distance, Color.green, 10);
+                Debug.Log("Hit");
+            }
+            else
+            {
+                Debug.DrawRay(turretBarrel.transform.position, turretBarrelDirection * 1000, Color.red, 10);
+                Debug.Log("No hit  ");
+            }
+            
+        }
+    }
+    
+    #endregion
     
     #region Mouse Delta Movement
    //Turret Rotation Based on the Mouse Delta
@@ -129,7 +182,13 @@ public class TurretController : MonoBehaviour
            
            Vector3 movementDirection = (dotProduct >= 0f) ? Vector3.forward : Vector3.back; // if bigger than 0 then it means closer to forward so forward
            //else it will be closer to back so direction will be bacl
-           
+           /*
+           if (_isIntersecting)
+           {
+               dotProduct = Vector3.Dot(cameraForward, Vector3.right);
+               movementDirection = (dotProduct >= 0f) ? Vector3.right : Vector3.back;
+           }
+           */
            Vector3 movement = movementDirection * (_moveValue.y * (Time.deltaTime * turretSpeed)); // Translating 2D to 3D
            
            turret.transform.position += movement; //Moving the turret based on the Vector
@@ -138,6 +197,14 @@ public class TurretController : MonoBehaviour
            pos.z = Mathf.Clamp(pos.z, railMinX, railMaxX); // Clamping
            turret.transform.position = pos;
            */
+       }
+   }
+
+   private void OnTriggerEnter2D(Collider2D other)
+   {
+       if (other.CompareTag("Intersection"))
+       {
+           _isIntersecting = true;
        }
    }
    private void DisableMovementInput()
