@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="eff9293f-827f-41fe-89db-85a5cdd0a04c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RetailTurretShooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RetailTurretShooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Inputs/PlayerInputActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Inputs/PlayerInputActions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Inputs/PlayerInputActions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Inputs/PlayerInputActions.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Turret/TurretController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Turret/TurretController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +94,7 @@
       <workItem from="1734016299247" duration="4000" />
       <workItem from="1734114128454" duration="13962000" />
       <workItem from="1734230861247" duration="1602000" />
-      <workItem from="1734454551160" duration="2684000" />
+      <workItem from="1734454551160" duration="4388000" />
     </task>
     <servers />
   </component>
@@ -119,13 +117,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Turret/TurretController.cs</url>
-          <line>99</line>
+          <line>100</line>
           <properties documentPath="C:\Unity Junior Programming\Prototype 1\RetailTurretShooter\Assets\Scripts\Turret\TurretController.cs" containingFunctionPresentation="Method 'Shoot'">
             <startOffsets>
-              <option value="3552" />
+              <option value="3610" />
             </startOffsets>
             <endOffsets>
-              <option value="3591" />
+              <option value="3649" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />

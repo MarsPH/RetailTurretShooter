@@ -33,6 +33,7 @@ public class TurretController : MonoBehaviour
     [SerializeField] private float shootCooldown = 2f;
     [SerializeField] private float shootRange = 50f;
     [SerializeField] private LayerMask shootableLayers;
+    [SerializeField] private ParticleSystem hitParticles;
     
     //private variables
     private Vector2 _moveValue; // a variable to store the input
@@ -107,6 +108,13 @@ public class TurretController : MonoBehaviour
             {
                 Debug.DrawRay(turretBarrel.transform.position, turretBarrelDirection * hitInfo.distance, Color.green, 10);
                 Debug.Log("Hit");
+                GameObject hitObject = hitInfo.collider.gameObject; //save the obj into a var
+                
+                Instantiate(hitParticles, hitObject.transform.position, Quaternion.Euler(-90, 0, 0));//create a particle in the hit position
+
+                Destroy(hitInfo.collider.gameObject); //destroys the target
+                
+                
             }
             else
             {
