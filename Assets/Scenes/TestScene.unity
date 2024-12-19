@@ -4192,7 +4192,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649edda3bf255094f899fd40cc0fca3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoint: []
+  waypoint:
+  - {fileID: 213264198}
+  - {fileID: 1705859336}
+  - {fileID: 707371314}
+  - {fileID: 560005883}
+  - {fileID: 1169529079}
+  - {fileID: 3800669}
+  - {fileID: 270756885}
+  - {fileID: 1637921284}
   movementSpeed: 5
   stateCooldown: 0.5
   MAX_RANDOM: 100

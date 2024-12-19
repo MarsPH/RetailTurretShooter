@@ -18,6 +18,7 @@ public class CustomerAI : MonoBehaviour
    [SerializeField] private int rudeRandomIndex = 30;
    
    private NavMeshAgent _agent; // refrenced agent
+   private Transform _targetWaypoint;
    private int _randomBehviorIndex;
    private CustomerState _currentState;
    private BehaviorType _currentBehaviorType;
@@ -38,6 +39,7 @@ public class CustomerAI : MonoBehaviour
    private void Start()
    {
       _agent = GetComponent<NavMeshAgent>();
+      _agent.speed = movementSpeed; // assign the speed of the agent based on the custom variable
       SetRandomDestination();
       AssignRandomBehavior(); //Assigns a behavior type at spawn randomly.
       _currentState = CustomerState.Idle;
@@ -45,11 +47,18 @@ public class CustomerAI : MonoBehaviour
 
    private void SetRandomDestination()
    {
+      if (waypoint.Length == 0) return; // if no waypoints, stop the process
       
+      _targetWaypoint = waypoint[Random.Range(0, waypoint.Length)]; // choose a random waypoint
+      _agent.SetDestination(_targetWaypoint.position); // the new destination is the position of the new destination
    }
 
    private void Update()
    {
+      if (_agent.remainingDistance <= _agent.stoppingDistance) // if the agent get close to the target. a new target will be chosen
+      {
+         SetRandomDestination(); // assign a new random destination
+      }
       if (_currentState == CustomerState.Idle)
       {
          //HandleIdleState(); // Do idle
