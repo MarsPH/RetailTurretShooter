@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eff9293f-827f-41fe-89db-85a5cdd0a04c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.RetailTurretShooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RetailTurretShooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/CustomerAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/CustomerAI.cs" afterDir="false" />
-    </list>
+    <list default="true" id="eff9293f-827f-41fe-89db-85a5cdd0a04c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +91,7 @@
       <workItem from="1734114128454" duration="13962000" />
       <workItem from="1734230861247" duration="1602000" />
       <workItem from="1734454551160" duration="4902000" />
-      <workItem from="1734631538027" duration="3799000" />
+      <workItem from="1734631538027" duration="4179000" />
     </task>
     <servers />
   </component>

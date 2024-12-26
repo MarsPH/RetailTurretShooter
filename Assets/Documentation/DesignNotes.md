@@ -168,7 +168,7 @@ This is a first-person turret-based shooter set in a stylized, 3D retail store e
 ---
 
 ## Milestones & Roadmap
-**Overall Timeline:** 25 days total. Key milestones ensure consistent progress and a polished final result.
+**Overall Timeline:** 25 working days in total. Key milestones ensure consistent progress and a polished final result.
 
 - **By Day 3:**  
   - **Deliverables:** Fully functional turret movement, basic shooting mechanic, initial Git setup and folder structure.  
@@ -215,5 +215,3 @@ This is a first-person turret-based shooter set in a stylized, 3D retail store e
 
 ---
 
-**Conclusion:**  
-This DesignNotes.md file serves as a comprehensive, detailed reference for the entire retail turret shooter project. It outlines the vision, mechanics, aesthetics, technical requirements, progression systems, and development milestones, ensuring a cohesive and focused effort over the 25-day timeline. With this blueprint, the development team can proceed confidently, knowing the goals and standards expected from the final product.
